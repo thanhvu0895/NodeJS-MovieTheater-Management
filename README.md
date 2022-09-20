@@ -2,7 +2,7 @@
 
 This is back end API micro-services built on Javacscript and Nodejs's modules including ExpressJS and Prisma.
 
-The service is live with a running MySQL Database server (thanks to Docker and Digital Ocean's virtual machine): 128.199.102.253/api/QuanLyNguoiDung/LayDanhSachNguoiDung
+The service is live with a running MySQL Database server (thanks to Docker and Digital Ocean's virtual machine): [128.199.102.253/api/QuanLyNguoiDung/LayDanhSachNguoiDung](128.199.102.253/api/QuanLyNguoiDung/LayDanhSachNguoiDung)
 
 Video demonstrate APIs usage : https://youtu.be/2mkc9OyU4-w
 
