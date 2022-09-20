@@ -11,7 +11,7 @@ This is back end API micro-services built on Javacscript and Nodejs's modules in
 
 The service is live with a running MySQL Database server (thanks to Docker and Digital Ocean's virtual machine). A sample link to get sample data is: [Get list of movie](http://128.199.102.253:3030/api/QuanLyPhim/LayDanhSachPhim)
 
-I also use this Swagger for API documentation and testing: https://movienew.cybersoft.edu.vn/swagger/index.html
+I also create this Swagger for API documentation and testing: https://movienew.cybersoft.edu.vn/swagger/index.html
 
 Bearer Token for testing with the swagger: 
 ```
