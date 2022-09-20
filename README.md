@@ -46,7 +46,7 @@ sers can generate film tickets for customers, or create a showtime for the theat
 
 
 ### Idea for this project: 
-- Make a swagger page so users can easily test all apis without PostMan.
+- Make a swagger page so users can easily test all apis without PostMan: https://movienew.cybersoft.edu.vn/swagger/index.html
 - Create a "login with Facebook" button for the swagger
 
 
