@@ -2,11 +2,16 @@
 
 This is back end API micro-services built on Javacscript and Nodejs's modules including ExpressJS and Prisma.
 
-The service is live with a running MySQL Database server (thanks to Docker and Digital Ocean's virtual machine): [Get list of movie](http://128.199.102.253:3030/api/QuanLyPhim/LayDanhSachPhim)
+![](https://media.npr.org/assets/img/2020/05/05/plazamarqueeduringclosure_custom-965476b67c1a760bdb3e16991ce8d65098605f62-s1100-c50.jpeg)
+
+
+
 
 ### Usage
 
-Swagger API Documentation: https://movienew.cybersoft.edu.vn/swagger/index.html
+The service is live with a running MySQL Database server (thanks to Docker and Digital Ocean's virtual machine). A sample link to get sample data is: [Get list of movie](http://128.199.102.253:3030/api/QuanLyPhim/LayDanhSachPhim)
+
+I also use this Swagger for API documentation and testing: https://movienew.cybersoft.edu.vn/swagger/index.html
 
 Bearer Token for testing with the swagger: 
 ```
