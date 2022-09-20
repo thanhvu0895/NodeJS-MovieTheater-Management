@@ -64,10 +64,13 @@ Result: if the user exist in database, you will sign in successfully. A new toke
 
 After signing in, you will be able to delete, update, or add more films of your choice. You can also view list of films divided by page number, and film related to theaters. You are also able to upload images as film's poster and save those images in the database
 
-3. Ticket management:
+3. Ticket Management:
 
-sers can generate film tickets for customers, or create a showtime for the theater.  
+Users can generate film tickets for customers, or create a showtime for the theater.  
 
+4. Theater Management:
+
+Users can add theaters and their banner through the database. Those information will be saved to the database.
 
 ### Idea for this project: 
 - Create a "login with Facebook" button for the swagger
