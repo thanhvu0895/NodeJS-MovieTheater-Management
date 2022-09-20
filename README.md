@@ -4,7 +4,15 @@ This is back end API micro-services built on Javacscript and Nodejs's modules in
 
 The service is live with a running MySQL Database server (thanks to Docker and Digital Ocean's virtual machine): [Get list of movie](http://128.199.102.253:3030/api/QuanLyPhim/LayDanhSachPhim)
 
-Video demonstrate APIs usage : https://youtu.be/2mkc9OyU4-w
+Swagger API Documentation: https://movienew.cybersoft.edu.vn/swagger/index.html
+
+Bearer Token for testing with the swagger: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJOb2RlanMgMjMiLCJIZXRIYW5TdHJpbmciOiIyNC8wMS8yMDIzIiwiSGV0SGFuVGltZSI6IjE2NzQ1MTg0MDAwMDAiLCJuYmYiOjE2NTc2NDUyMDAsImV4cCI6MTY3NDY2NjAwMH0.tMpP9vQGyw0easJhkJFDbghtZNpnB7aQjlSyjqVoNRI
+
+Login Info:
+username: abc123
+password: 123456789
+
+![Youtube](https://img.shields.io/badge/YouTube-FF0000?style=flat&logo=youtube) APIs usage demonstration with POSTMAN: https://youtu.be/2mkc9OyU4-w
 
 ### List of API:  
 
@@ -46,7 +54,6 @@ sers can generate film tickets for customers, or create a showtime for the theat
 
 
 ### Idea for this project: 
-- Make a swagger page so users can easily test all apis without PostMan: https://movienew.cybersoft.edu.vn/swagger/index.html
 - Create a "login with Facebook" button for the swagger
 
 
