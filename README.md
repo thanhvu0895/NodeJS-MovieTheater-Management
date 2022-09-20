@@ -45,7 +45,10 @@ Request Body:
 }
 ```
 
-Result: If user is not exist in the database, a new user will be created with their password being encrypted in the database. If you sign in:  
+Result: If user is not exist in the database, a new user will be created with their password being encrypted in the database.  
+
+
+If you sign in:  
 Get http://128.199.102.253:3030/api/QuanLyNguoiDung/DangNhap  
 Request body: 
 ```
