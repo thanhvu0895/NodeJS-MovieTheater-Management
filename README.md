@@ -36,13 +36,13 @@ Request body:
 
 Result: if the user exist in database, you will sign in successfully. A new token will be generated for that user to perform activities like deleting, modifying the data.
 
-# Film Management
+2. Film Management
 
 After signing in, you will be able to delete, update, or add more films of your choice. You can also view list of films divided by page number, and film related to theaters. You are also able to upload images as film's poster and save those images in the database
 
-# Ticket management:
+3. Ticket management:
 
-Users can generate film tickets for customers, or create a showtime for the theater.
+sers can generate film tickets for customers, or create a showtime for the theater.  
 
 
 ### Idea for this project: 
