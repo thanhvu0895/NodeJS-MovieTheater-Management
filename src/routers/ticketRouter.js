@@ -3,10 +3,22 @@ const ticketRouter = express.Router();
 const ticketController = require('../controllers/ticketController')
 const authController = require('../controllers/authController')
 
+/**
+ * @swagger
+ * /api/tickets/getTickets:
+ *  get:
+ *    tags:
+ *      - Tickets Management
+ *    content:
+ *      application/json:
+ *    responses:
+ *      '200':
+ *        description: Success
+ */
+ticketRouter.get("/getTickets", ticketController.getTickets);
 
-ticketRouter.post("/DatVe", authController.checkToken ,ticketController.bookTicket);
-ticketRouter.get("/LayDanhSachPhongVe", ticketController.getTickets);
-ticketRouter.post("/TaoLichChieu", authController.checkToken ,ticketController.createShowTime);
+ticketRouter.post("/bookTicket", authController.checkToken ,ticketController.bookTicket);
+ticketRouter.post("/createShowTime", authController.checkToken ,ticketController.createShowTime);
 
 
 module.exports = ticketRouter;

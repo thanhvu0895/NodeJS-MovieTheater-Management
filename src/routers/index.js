@@ -7,10 +7,10 @@ const movieRouter = require('./movieRouter');
 const cinemaRouter = require('./cinemaRouter');
 
 
-rootRouter.use("/QuanLyDatVe",ticketRouter);
-rootRouter.use("/QuanLyNguoiDung",userRouter);
-rootRouter.use("/QuanLyPhim",movieRouter);
-rootRouter.use("/QuanLyRap",cinemaRouter);
+rootRouter.use("/tickets",ticketRouter);
+rootRouter.use("/users",userRouter);
+rootRouter.use("/movies",movieRouter);
+rootRouter.use("/cineplex",cinemaRouter);
 
 
 

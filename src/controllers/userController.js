@@ -20,11 +20,11 @@ const addUser = async(req, res) => {
                 email
             }
         });
-        if (checkEmail.length > 0) errorCode(res, "email đã tồn tại");
+        if (checkEmail.length > 0) errorCode(res, "Email Account Already Exists");
         else {
             const createData = await prisma.user.create({data});
-            if(createData) successCode(res, "tao tk thanh cong");
-            else errorCode(res, "tao tk that bai");
+            if(createData) successCode(res, "User Account Creation Success");
+            else errorCode(res, "User Account Creation Failed");
         }
     } catch {
         failCode(res);
@@ -48,11 +48,11 @@ const signUp = async (req, res) => {
                 email
             }
         });
-        if (checkEmail.length > 0) errorCode(res, "email đã tồn tại");
+        if (checkEmail.length > 0) errorCode(res, "Email Account Already Exists");
         else {
             const createData = await prisma.user.create({data});
             if(createData) successCode(res, createData);
-            else errorCode(res, "tao tk that bai");
+            else errorCode(res, "User Account Creation Failed");
         }
     } catch {
         failCode(res);
@@ -75,9 +75,9 @@ const login = async (req, res) => {
                 let token = authController.generateToken(checkEmail[0]);
                 let data = {...checkEmail[0], token};
                 successCode(res, data);
-            } else errorCode(res, "Sai Mật khẩu");
+            } else errorCode(res, "Wrong Password");
             
-        } else errorCode(res, "Email không tồn tại");
+        } else errorCode(res, "Email Account Not Found");
     } catch  {
         failCode(res);
     }
@@ -102,39 +102,39 @@ const getUsersPages = async (req, res) => {
     try {
         const totalCount = await prisma.user.count()
     
-        let {soTrang, soPhanTuTrenTrang} = req.query;
-        const totalPages = Math.ceil(totalCount/soPhanTuTrenTrang);
+        let {pageNum, pageItemsNum} = req.query;
+        const totalPages = Math.ceil(totalCount/pageItemsNum);
     
-        if (soTrang == null && soPhanTuTrenTrang == null || soTrang < 1) {
+        if (pageNum == null && pageItemsNum == null || pageNum < 1) {
             const items = await prisma.user.findMany();
             successCode(res, {
                 totalPages: 1,
                 totalCount, 
                 items
             });
-        } else if (soTrang == null) {
+        } else if (pageNum == null) {
             const items = await prisma.user.findMany({
-                take: Number(soPhanTuTrenTrang),
+                take: Number(pageItemsNum),
             });
             
             successCode(res, {
-                count: soPhanTuTrenTrang,
+                count: pageItemsNum,
                 totalPages,
                 totalCount, 
                 items
             });      
     
-        } else if (soPhanTuTrenTrang == null || soPhanTuTrenTrang < 1){
-            errorCode(res, "Số phần tử trên trang không hợp lệ");
+        } else if (pageItemsNum == null || pageItemsNum < 1){
+            errorCode(res, "Invalid number of items per page");
         } else {
             const items = await prisma.user.findMany({
-                skip: (Number(soTrang - 1) * soPhanTuTrenTrang), 
-                take: Number(soPhanTuTrenTrang),
+                skip: (Number(pageNum - 1) * pageItemsNum), 
+                take: Number(pageItemsNum),
             });
             
             successCode(res, {
-                currentPage: soTrang,
-                count: soPhanTuTrenTrang,
+                currentPage: pageNum,
+                count: pageItemsNum,
                 totalPages,
                 totalCount, 
                 items
@@ -172,7 +172,7 @@ const updateUser = async (req, res) => {
 
         successCode(res, updateData);
     } else {
-        errorCode(res, "Người dùng không tồn tại");
+        errorCode(res, "User Account Does Not Exist");
     }
 
 }
@@ -193,7 +193,7 @@ const deleteUser = async (req, res) => {
         }})    
         successCode(res, "User Deleted")
     } else {
-        errorCode(res, "Không tìm thấy dữ liệu người dùng")
+        errorCode(res, "User Data Not Found")
     }
 }
 

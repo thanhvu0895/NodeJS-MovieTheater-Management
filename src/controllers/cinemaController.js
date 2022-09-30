@@ -10,13 +10,13 @@ const getCineplex = async (req, res) => {
 
 //LayThongTinCumRapTheoHeThong
 const getCinemaByCineplex = async (req, res) => {
-    const {maHeThongRap} = req.query;
+    const {cineplexId} = req.query;
     let items = await prisma.cineplex.findMany();
 
-    if (maHeThongRap) {    
+    if (cineplexId) {    
         items =  await prisma.cineplex.findMany({
             where: {
-                name: maHeThongRap
+                name: cineplexId
             },
             include: {
                 cinema: {
@@ -33,13 +33,13 @@ const getCinemaByCineplex = async (req, res) => {
 
 //LayThongTinLichChieuHeThongRap
 const getShowByCineplex = async (req, res) => {
-    const {maHeThongRap} = req.query;
+    const {cineplexId} = req.query;
     let items = await prisma.showtime.findMany();
 
-    if (maHeThongRap) {    
+    if (cineplexId) {    
         items =  await prisma.cineplex.findMany({
             where: {
-                name: maHeThongRap
+                name: cineplexId
             },
             select: {
                 name: true,
@@ -67,13 +67,13 @@ const getShowByCineplex = async (req, res) => {
 
 ///LayThongTinLichChieuPhimTheoPhim
 const getShowTime = async (req, res) => {
-    const {maPhim} = req.query;
+    const {filmId} = req.query;
     let items = await prisma.showtime.findMany();
 
-    if (maPhim) {
+    if (filmId) {
         items = await prisma.movie.findMany({
             where: {
-                id: Number(maPhim)
+                id: Number(filmId)
             },
             select: {
                 name: true,

@@ -26,36 +26,36 @@ const getFilmPages = async (req, res) => {
     
     const totalCount = await prisma.movie.count()
 
-    let {soTrang, soPhanTuTrenTrang} = req.query;
+    let {pageNum, pageItemsNum} = req.query;
     
-    const totalPages = Math.ceil(totalCount/soPhanTuTrenTrang)
+    const totalPages = Math.ceil(totalCount/pageItemsNum)
     // lấy n phần tử trên trang
-    if(soPhanTuTrenTrang == null && soTrang == null || soTrang < 1) {
+    if(pageItemsNum == null && pageNum == null || pageNum < 1) {
 
         let items = await prisma.movie.findMany();
         successCode(res, items)
-    } else if (soTrang == null) {
+    } else if (pageNum == null) {
         let items = await prisma.movie.findMany({
-            take: Number(soPhanTuTrenTrang),
+            take: Number(pageItemsNum),
         })
 
         successCode(res, {
-            count: soPhanTuTrenTrang,
+            count: pageItemsNum,
             totalCount, 
             items
         })
-    } else if (soPhanTuTrenTrang == null || soPhanTuTrenTrang < 1 ) {
-        errorCode(res, "Số phần tử trên trang không hợp lệ")
+    } else if (pageItemsNum == null || pageItemsNum < 1 ) {
+        errorCode(res, "Invalid Number Of Items Per Page")
     } 
     else {
             let items = await prisma.movie.findMany({
-                skip: (Number(soTrang - 1) * soPhanTuTrenTrang), 
-                take: Number(soPhanTuTrenTrang),
+                skip: (Number(pageNum - 1) * pageItemsNum), 
+                take: Number(pageItemsNum),
             })
             
             successCode(res, {
-                currentPage: soTrang,
-                count: soPhanTuTrenTrang,
+                currentPage: pageNum,
+                count: pageItemsNum,
                 totalPages,
                 totalCount, 
                 items
@@ -64,44 +64,44 @@ const getFilmPages = async (req, res) => {
 }        
 
 const getFilmByDate = async (req, res) => {
-    const {soTrang, soPhanTuTrenTrang, tuNgay, denNgay} = req.query;
+    const {pageNum, pageItemsNum, fromDate, toDate} = req.query;
     // số ngày hợp lệ
-    if (tuNgay == null && denNgay == null && soPhanTuTrenTrang == null && soTrang == null) {
-        errorCode(res, "Chưa điền đủ thông tin về ngày!")
-    } else if (tuNgay == null || denNgay == null){
-        errorCode(res, "Chưa điền đủ thông tin về ngày!")
-    } else if (soPhanTuTrenTrang == null && soTrang == null) {
+    if (fromDate == null && toDate == null && pageItemsNum == null && pageNum == null) {
+        errorCode(res, "Missing date-time values")
+    } else if (fromDate == null || toDate == null){
+        errorCode(res, "Missing date-time values")
+    } else if (pageItemsNum == null && pageNum == null) {
             let items = await prisma.movie.findMany({
             where: {
                 startDate: {
-                    gte: new Date(tuNgay),
-                    lt: new Date(denNgay)
+                    gte: new Date(fromDate),
+                    lt: new Date(toDate)
                 }
             }
         })
         successCode(res, items)
 
-    } else if (soTrang == null) {
+    } else if (pageNum == null) {
         let items = await prisma.movie.findMany({
-        take: Number(soPhanTuTrenTrang),
+        take: Number(pageItemsNum),
             where: {
                 startDate: {
-                    gte: new Date(tuNgay),
-                    lt: new Date(denNgay)
+                    gte: new Date(fromDate),
+                    lt: new Date(toDate)
                 }
             }
         })
         successCode(res, items)
-    }  else if (soPhanTuTrenTrang == null){
-                errorCode(res, "Số Phần Tử không hợp Lệ")
+    }  else if (pageItemsNum == null){
+                errorCode(res, "Invalid Number Of Items Per Page")
     }  else {
         let items = await prisma.movie.findMany({
-            skip: (Number(soTrang - 1) * soPhanTuTrenTrang), 
-            take: Number(soPhanTuTrenTrang),
+            skip: (Number(pageNum - 1) * pageItemsNum), 
+            take: Number(pageItemsNum),
             where: {
                 startDate: {
-                    gte: new Date(tuNgay),
-                    lt: new Date(denNgay)
+                    gte: new Date(fromDate),
+                    lt: new Date(toDate)
                 }
             }
         })
@@ -112,16 +112,17 @@ const getFilmByDate = async (req, res) => {
 
 //LayThongTinPhim theo ma phim
 const getFilmById = async (req, res) => {
-    const {maPhim} = req.query;
-    if (maPhim) {
-        let items = await prisma.movie.findMany({
-            where: {
-                id: Number(maPhim)
-            }
-        });    
-    successCode(res, items)
+    const {id} = req.params;
+    let checkMovie = await prisma.movie.findMany({
+        where: {
+            id: Number(id)
+        }
+    });
+
+    if (checkMovie.length > 0) {
+        successCode(res, checkMovie)
     } else {
-        errorCode(res, "Mã phim không hợp lệ")
+        errorCode(res, "Film ID not found")
     }
 }
 
@@ -145,16 +146,15 @@ const deleteFilm = async (req, res) => {
                 id: Number(id)
             }
         })
-        console.log(checkFilm)
         if (checkFilm.length > 0) {
         await prisma.movie.delete({
             where: {
                 id: Number(id)
             }
         })} else {
-            errorCode(res, "Không tìm thấy dữ liệu");
+            errorCode(res, "Data not found");
         }
-        successCode(res, "Xoá Phim Thành Công");
+        successCode(res, "Film deleted successfully");
     } catch {
         failCode(res);
     } 
@@ -162,7 +162,7 @@ const deleteFilm = async (req, res) => {
 
 
 // ThemPhimUploadHinh
-const addFilmImage = async (req, res) => {
+const addFilmPoster = async (req, res) => {
     const {filename} = req.file;
     const {name, startDate, time, evaluate} = req.body
 
@@ -191,12 +191,11 @@ const uploadPoster = async (req, res) => {
             }})
             successCode(res, data);
         } else {
-            errorCode(res, "Phim không tồn tại");
+            errorCode(res, "Film Not Found");
         }
     } catch {
         failCode(res);
     }
-   
 }
 
 
@@ -208,6 +207,6 @@ module.exports = {
     getBanners,
     getFilmByDate,
     getFilmById,
-    addFilmImage,
+    addFilmPoster,
     uploadPoster
 }

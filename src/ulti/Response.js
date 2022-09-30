@@ -1,7 +1,7 @@
 // 200
 const successCode = (res, data) => {
     let dSend = {
-        message: "Thành công",
+        message: "Success",
         data: data,
         dateTime: (new Date()).toJSON()
     }
@@ -13,7 +13,7 @@ const successCode = (res, data) => {
 const errorCode = (res, data) => {
 
     let dSend = {
-        message: "Thất bại",
+        message: "Bad Request",
         data: data,
         dateTime: (new Date()).toJSON()
     }
@@ -25,7 +25,7 @@ const errorCode = (res, data) => {
 //500
 const failCode = (res) => {
     let dSend = {
-        message: "Lỗi hệ thống !",
+        message: " Internal Server Error",
         dateTime: (new Date()).toJSON()
     }
     res.status(500).send(dSend);
