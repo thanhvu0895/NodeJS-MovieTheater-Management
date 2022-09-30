@@ -6,7 +6,9 @@ This is back end API micro-services built on JavaScript and Node.js's modules in
 
 ### Usage
 
-You can use my Swagger UI for API testing: http://178.128.154.4:3030/api-doc
+You can use my Swagger UI for API testing: http://178.128.154.4:3030/api-docs
+
+![SWAGGER UI](https://i.imgur.com/nCaadLp.png)
 
 The service is live with a running MySQL Database server (thanks to Docker and Digital Ocean's virtual machine). A sample link to get sample data is: [Get list of movie](http://178.128.154.4:3030/api/movies/getFilms)
   
