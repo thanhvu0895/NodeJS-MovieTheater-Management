@@ -52,7 +52,7 @@ movieRouter.get("/getFilms", movieController.getFilms);
  *    content:
  *      application/json:
  *    responses:
- *      '200':
+ *      200:
  *        description: Success
  */
 movieRouter.get("/getFilmPages", movieController.getFilmPages);
@@ -82,13 +82,11 @@ movieRouter.get("/getFilmPages", movieController.getFilmPages);
  *        description:  Start date to filter from (eg. 1000-01-01)
  *        schema:
  *          type: date-time
- *          format: int64
  *      - name: toDate
  *        in: query
- *        description:  End date to filter from (eg. 2022-29-09)
+ *        description:  End date to filter from (eg. 2022-09-29)
  *        schema:
  *          type: date-time
- *          format: int64
  *    content:
  *      application/json:
  *    responses:
@@ -96,8 +94,6 @@ movieRouter.get("/getFilmPages", movieController.getFilmPages);
  *        description: Success
  */
 movieRouter.get("/getFilmByDate", movieController.getFilmByDate);
-
-
 
 
 /**
@@ -146,16 +142,15 @@ movieRouter.get("/getBanners", movieController.getBanners);
  *    tags:
  *      - Movies Management
  *    description: Add New Film
- *    requestBody:
- *      content:
- *        application/json:
- *          schema:
- *            $ref: '#/components/schemas/Order'
- *    content:
- *      application/json:
+ *    parameters:
+ *      - name: request body
+ *        in: body
+ *        schema:
+ *          $ref: '#/components/schemas/Film'
  *    responses:
- *      '200':
+ *      200:
  *        description: Success
+ * 
  */
 movieRouter.post("/addFilm", movieController.addFilm)
 

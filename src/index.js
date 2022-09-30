@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUI = require('swagger-ui-express');
-const YAML = require('yamljs')
 
 app.use(express.json());
 app.use(express.static("."));
@@ -20,11 +19,6 @@ const swaggerOption = {
                User: {
                   type: "object",
                   properties: {
-                     id: {
-                        type: "integer",
-                        format: "int64",
-                        example: 10
-                     },
                      name: {
                         type: "string",
                         example: "Thanh Vu"
@@ -41,15 +35,55 @@ const swaggerOption = {
                         type: "string",
                         example: "+12693978290"
                      },
-                     role_id: {
-                        type: "integer",
-                        format: "int32"
-                     },
                   },
                   xml: {
                      name: "user"
-                  }
-               }
+                  },
+               },
+               SignIn: {
+                type: "object",
+                properties: {
+                   email: {
+                      type: "string",
+                      example: "thanhvu@gmail.com"
+                   },
+                   passWord: {
+                      type: "string",
+                      example: "1234"
+                   },
+                },
+                xml: {
+                   name: "signin"
+                },
+             },
+             Film: {
+                type: "object",
+                  properties: {
+                     name: {
+                        type: "string",
+                        example: "The New Turing Omnibus"
+                     },
+                     time: {
+                        type: "integer",
+                        example: 1234
+                     },
+                     evaluate: {
+                        type: "integer",
+                        example: 120
+                     },
+                     startDate: {
+                        type: "string",
+                        example: "2022/12/02"
+                     },
+                     poster: {
+                        type: "string",
+                        example: "./abc.jpg"
+                     },
+                  },
+                  xml: {
+                     name: "film"
+                  },
+             }
             }
          },
         info: {
@@ -81,7 +115,7 @@ const swaggerOption = {
             },
         ],
     },
-    apis: ["./src/routers/*.js"]
+    apis: ["./src/routers/*.js"],
 }
 
 const swaggerDocs = swaggerJsDoc(swaggerOption);
@@ -90,3 +124,4 @@ const swaggerDocs = swaggerJsDoc(swaggerOption);
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 
+15

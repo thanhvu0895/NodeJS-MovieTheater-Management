@@ -184,7 +184,7 @@ const uploadPoster = async (req, res) => {
         });
 
         if (checkFilm) {
-            let data = {...checkFilm[0], poster: `/public/image/${filename}`}
+            let data = {...checkFilm[0], poster: `/public/img/${filename}`}
             await prisma.movie.update({data, where: 
             {
                 id: Number(id)

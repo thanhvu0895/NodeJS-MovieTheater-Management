@@ -44,8 +44,37 @@ userRouter.get("/getUsers", userController.getUsers)
  */
 userRouter.get("/getUsersPages", userController.getUsersPages)
 
-
+/**
+ * @swagger
+ * /api/users/signup:
+ *  post:
+ *    tags:
+ *      - Users Management
+ *    parameters:
+ *      - name: request body
+ *        in: body
+ *        schema:
+ *          $ref: '#/components/schemas/User'
+ *    responses:
+ *      200:
+ *        description: Success
+ */
 userRouter.post("/signup", userController.signUp)
+/**
+ * @swagger
+ * /api/users/signin:
+ *  post:
+ *    tags:
+ *      - Users Management
+ *    parameters:
+ *      - name: request body
+ *        in: body
+ *        schema:
+ *          $ref: '#/components/schemas/SignIn'
+ *    responses:
+ *      200:
+ *        description: Success
+ */
 userRouter.post("/signin", userController.login)
 
 /**
@@ -54,19 +83,37 @@ userRouter.post("/signin", userController.login)
  *  post:
  *    tags:
  *      - Users Management
- *    description: Add New User
- *    requestBody:
- *      content:
- *        application/json:
- *          schema:
- *            $ref: '#/components/schemas/User'
- *    content:
- *      application/json:
+ *    parameters:
+ *      - name: request body
+ *        in: body
+ *        schema:
+ *          $ref: '#/components/schemas/User'
  *    responses:
- *      '200':
+ *      200:
  *        description: Success
  */
 userRouter.post("/addUser", authController.checkToken, userController.addUser)
+
+/**
+ * @swagger
+ * /api/users/updateUser/{id}:
+ *  put:
+ *    tags:
+ *      - Users Management
+ *    parameters:
+ *      - name: authentication
+ *        in: header
+ *        description: ''
+ *      - name: id
+ *        in: path
+ *      - name: request body
+ *        in: body
+ *        schema:
+ *          $ref: '#/components/schemas/User'
+ *    responses:
+ *      200:
+ *        description: Success
+ */
 userRouter.put("/updateUser/:id", authController.checkToken, userController.updateUser)
 
 
@@ -81,13 +128,10 @@ userRouter.put("/updateUser/:id", authController.checkToken, userController.upda
  *      - name: authentication
  *        in: header
  *        description: ''
- *        required: false
  *        schema:
  *          type: String
  *      - name: id
  *        in: path
- *        description: Movie id
- *        required: true
  *        schema:
  *          type: integer
  *          format: int64

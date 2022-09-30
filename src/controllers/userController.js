@@ -87,11 +87,7 @@ const login = async (req, res) => {
 
 // LayDanhSachNguoiDung
 const getUsers = async (req, res) => {
-    const data = await prisma.user.findMany({
-        include: {
-            ticket: true
-        }
-    });
+    const data = await prisma.user.findMany();
     successCode(res, data);
 }
 
@@ -147,53 +143,64 @@ const getUsersPages = async (req, res) => {
 
 // CapNhatThongTinNguoiDung
 const updateUser = async (req, res) => {
-    const { id } = req.params;
-    const {name, email, phone, pass_word, role_id} = req.body;
-
-    const data = {
-        name, 
-        email,
-        phone,
-        pass_word: authController.hashPass(pass_word),
-        role_id
-    };
-
-    let checkUser = await prisma.user.findMany({
-        where: {
-            id: Number(id)
-        }
-    });
-
-    if (checkUser.length > 0) {
-        const updateData = await prisma.user.update({data,
+    try {
+        const { id } = req.params;
+        const {name, email, phone, pass_word, role_id} = req.body;
+    
+        const data = {
+            name, 
+            email,
+            phone,
+            pass_word: authController.hashPass(pass_word),
+        };
+    
+        let checkUser = await prisma.user.findMany({
             where: {
                 id: Number(id)
-            }});
-
-        successCode(res, updateData);
-    } else {
-        errorCode(res, "User Account Does Not Exist");
+            }
+        });
+    
+        if (checkUser.length > 0) {
+            const updateData = await prisma.user.update({data,
+                where: {
+                    id: Number(id)
+                }});
+    
+            successCode(res, updateData);
+        } else {
+            errorCode(res, "User Account Does Not Exist");
+        }
+    } catch {
+        failCode(res);
     }
 
 }
 
 // XoaNguoiDung
 const deleteUser = async (req, res) => {
-    const {id} = req.params;
-    let checkUser = await prisma.user.findMany({
-        where: {
-            id: Number(id)
-        }
-    })
+    try{
+        const {id} = req.params;
+        if(id == "undefined"){
+            errorCode(res, "User Id missing")
+        } else {
+            let checkUser = await prisma.user.findMany({
+                where: {
+                    id: Number(id)
+                }
+            })
 
-    if(checkUser.length > 0) {
-        await prisma.user.delete({
-            where: {
-                id: Number(id)
-        }})    
-        successCode(res, "User Deleted")
-    } else {
-        errorCode(res, "User Data Not Found")
+            if(checkUser.length > 0) {
+                await prisma.user.delete({
+                    where: {
+                        id: Number(id)
+                }})    
+                successCode(res, "User Deleted")
+            } else {
+                errorCode(res, "User Data Not Found")
+            }
+        }
+        } catch {
+            failCode(res)
     }
 }
 

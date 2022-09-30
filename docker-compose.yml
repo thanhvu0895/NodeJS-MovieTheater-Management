@@ -16,8 +16,8 @@ services:
     app:
         depends_on:
             - mysql_db
-        image: nhatthanh310895/film-final:v1
-        container_name: const-final
+        image: nhatthanh310895/movie:v1
+        container_name: movie-final
         env_file: .env
         environment:
             - DB_HOST=mysql_db
