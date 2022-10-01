@@ -6,7 +6,7 @@ This is back end API micro-services built on **JavaScript** and **Node.JS**'s mo
 
 ### Usage
 
-You can use this User Interface for API testing: http://178.128.154.4:3030/api-docs
+You can use my [Swagger User Interface](http://178.128.154.4:3030/api-docs) for API testing: 
 
 ![SWAGGER UI](https://i.imgur.com/nCaadLp.png)
 
