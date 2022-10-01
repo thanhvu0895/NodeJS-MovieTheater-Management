@@ -1,18 +1,18 @@
 # Movie Theaters Management APIs
 
-This is back end API micro-services built on JavaScript and Node.js's modules including ExpressJS and Prisma.
+This is back end API micro-services built on **JavaScript** and **Node.JS**'s modules including **ExpressJS** and **Prisma**. **JWT library** is also helping with encryption of user's password. 
 
 ![](https://media.npr.org/assets/img/2020/05/05/plazamarqueeduringclosure_custom-965476b67c1a760bdb3e16991ce8d65098605f62-s1100-c50.jpeg)
 
 ### Usage
 
-You can use my Swagger UI for API testing: http://178.128.154.4:3030/api-docs
+You can use this User Interface for API testing: http://178.128.154.4:3030/api-docs
 
 ![SWAGGER UI](https://i.imgur.com/nCaadLp.png)
 
-The service is live with a running MySQL Database server (thanks to Docker and Digital Ocean's virtual machine). A sample link to get sample data is: [Get list of movie](http://178.128.154.4:3030/api/movies/getFilms)
+The service is live with a running **MySQL Database Server** (thanks to Docker and Digital Ocean's virtual machine). A sample link to get sample data is: [Get list of movie](http://178.128.154.4:3030/api/movies/getFilms)
   
-![Youtube](https://img.shields.io/badge/YouTube-FF0000?style=flat&logo=youtube) APIs usage demonstration with POSTMAN: https://youtu.be/2mkc9OyU4-w
+![Youtube](https://img.shields.io/badge/YouTube-FF0000?style=flat&logo=youtube) APIs usage demonstration with **POSTMAN**: https://youtu.be/2mkc9OyU4-w
 
 ### List of API:  
 
