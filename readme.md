@@ -18,7 +18,9 @@ The service is live with a running MySQL Database server (thanks to Docker and D
 
 1. USER MANGEMENT API  
   
-For example, with Signing Up:  
+Signing Up:  
+![Example](https://i.imgur.com/gKcSQHY.png)
+
 POST http://178.128.154.4:3030/api/users/signup
 Request Body: 
 ```
@@ -30,11 +32,14 @@ Request Body:
     "role_id": 3
 }
 ```
+
+Result: 
+![](https://i.imgur.com/oev67vf.png)
+If user is not exist in the database, a new user will be created with their password being encrypted in the database.    
   
-Result: If user is not exist in the database, a new user will be created with their password being encrypted in the database.  
-  
-  
-If you sign in:  
+Signing in:  
+![Example](https://i.imgur.com/LnmxkDY.png)
+
 GET http://178.128.154.4:3030/api/users/signin
 Request body: 
 ```
@@ -44,11 +49,13 @@ Request body:
 }
 ```
 
-Result: if the user exist in database, you will sign in successfully. A new token will be generated for that user to perform activities like deleting, modifying the data.
+Result: 
+![](https://i.imgur.com/N1WYsYY.png)
+If the user exist in database, you will sign in successfully. A new token will be generated for that user to perform activities like deleting, modifying the data.  
   
 2. Film Management  
     
-After signing in, you will be able to delete, update, or add more films of your choice. You can also view list of films divided by page number, and film related to theaters. You are also able to upload images as film's poster and save those images in the database
+After signing in, you will be able to delete, update, or add more films of your choice. You can also view list of films divided by page number, and film related to theaters. You are also able to upload images as film's poster and save those images in the database  
 
 3. Ticket Management:  
 
@@ -56,7 +63,7 @@ Users can generate film tickets for customers, or create a showtime for the thea
   
 4. Theater Management:  
   
-Users can add theaters and their banner through the database. Those information will be saved to the database.
+Users can add theaters and their banner through the database. Those information will be saved to the database.  
   
 ### Idea for this project:  
-- Create a "login with Facebook" function
+- Create a "login with Facebook" function  
